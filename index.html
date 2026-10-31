@@ -118,6 +118,7 @@ footer .foot{font-size:12.5px}
   background:var(--deep);color:#fff;box-shadow:0 6px 18px rgba(80,30,10,.3);font-size:20px;opacity:0;pointer-events:none;
   transform:translateY(8px);transition:opacity .2s,transform .2s;z-index:30}
 .top.show{opacity:1;pointer-events:auto;transform:none}
+a.top{color:#fff;text-decoration:none}
 mark{background:#fbd9c4;color:inherit;border-radius:3px}
 </style>
 </head>
@@ -173,6 +174,7 @@ mark{background:#fbd9c4;color:inherit;border-radius:3px}
   <a class="qrbtn" href="qr.html" data-t="qrbtn"></a>
   <div class="foot" data-t="foot"></div>
 </footer>
+<a class="top qrfab show" id="qrfab" href="qr.html" aria-label="QR"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h4v4h-4"/></svg></a>
 <button class="top" id="top" aria-label="Наверх"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <script>
@@ -277,7 +279,7 @@ function spy(){
   setOn(id);
 }
 var raf;window.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){
-  spy();$('#top').classList.toggle('show',scrollY>900)})},{passive:true});
+  spy();var up=scrollY>900;$('#top').classList.toggle('show',up);$('#qrfab').classList.toggle('show',!up)})},{passive:true});
 main.addEventListener('click',function(e){var c=e.target.closest('.card.tap');if(!c)return;
   var was=c.classList.contains('open');document.querySelectorAll('.card.open').forEach(function(x){x.classList.remove('open')});if(!was)c.classList.add('open');});
 $('#top').onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
