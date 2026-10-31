@@ -99,6 +99,10 @@ section.cat{padding-top:30px;scroll-margin-top:118px}
 .info .desc+.note{margin-top:6px}
 .info .note{font-size:12px;color:var(--muted)}
 .card.open .card.tap{cursor:pointer}
+.card.spicy{animation:hotpulse 2.8s ease-in-out infinite}
+@keyframes hotpulse{0%,100%{border-color:#efd9cc;box-shadow:0 1px 0 rgba(163,51,34,.03),0 8px 22px -14px rgba(120,50,20,.18)}
+  50%{border-color:#e0261b;box-shadow:0 0 0 1px rgba(224,38,27,.55),0 6px 20px -8px rgba(224,38,27,.45)}}
+@media (prefers-reduced-motion:reduce){.card.spicy{animation:none;border-color:#e0261b}}
 .cb{display:flex;flex-direction:column;flex:1;padding:9px 5px 3px}
 .name{font-size:15.5px;font-weight:500;line-height:1.1;letter-spacing:-.005em;color:var(--brand);word-break:break-word}
 .name .hot{white-space:nowrap;margin-left:3px;font-size:11px;letter-spacing:-2px}
@@ -219,7 +223,7 @@ function itemHTML(it){
   var d=desc(it), n=it.n?note(it):'', has=!!(d||n);
   var pic=it.img?'<img class="photo" loading="lazy" src="img/'+it.img+'.jpg" alt="'+esc(nm(it))+'">':'<img class="ph" src="img/emblem.svg" alt="">';
   var info=has?'<div class="info">'+(d?'<div class="desc">'+hl(d)+'</div>':'')+(n?'<div class="note">'+esc(n)+'</div>':'')+'</div>':'';
-  return '<article class="card'+(has?' tap':'')+(has&&Q&&d&&norm(d).indexOf(norm(Q))>-1?' open':'')+'"><div class="pic">'+pic+info+'</div><div class="cb"><div class="name">'+hl(nm(it))+hot+'</div>'+
+  return '<article class="card'+(it.h?' spicy':'')+(has?' tap':'')+(has&&Q&&d&&norm(d).indexOf(norm(Q))>-1?' open':'')+'"><div class="pic">'+pic+info+'</div><div class="cb"><div class="name">'+hl(nm(it))+hot+'</div>'+
     '<div class="price'+(it.p.length>1?' multi':'')+'">'+priceHTML(it.p)+'</div></div></article>';
 }
 function render(){
