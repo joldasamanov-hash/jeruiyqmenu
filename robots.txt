@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://joldasamanov-hash.github.io/jeruiyqmenu/sitemap.xml
